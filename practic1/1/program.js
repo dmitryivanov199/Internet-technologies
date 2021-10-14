@@ -24,16 +24,16 @@ function make1_3(array) {
   return array;
 }
 
+console.log("Task 1.1");
 A = [1, 2, 3];
 B = [4, 5, 6];
-console.log("Task 1.1");
 console.log("A = " + A);
 console.log("B = " + B);
 console.log("Result = " + make1_1(A, B));
 
 console.log("");
 
-array = [12, 4, 3, 10, 1, 20];
 console.log("Task 1.3");
+array = [12, 4, 3, 10, 1, 20];
 console.log("array = " + array);
 console.log("Result = " + make1_3(array));
