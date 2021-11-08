@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Task 4</title>
+    </head>
+
+    <body>
+        <div id="booksTable"></div>
+
+        <script>
+            function createBooksTable(books){
+                var countBooks = books.length;
+
+                var table = document.createElement('table');
+                table.setAttribute('border', '1');
+                table.setAttribute('width', '500');
+                table.setAttribute('height', '300');
+
+                var tbody = document.createElement('tbody');
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>Артикул</td><td>Автор</td><td>Название книги</td><td>Описание</td>';
+                tbody.appendChild(tr);
+                var items = ['articul', 'author', 'title', 'description'];
+
+                for(var i = 0; i < countBooks; i++){
+                    var tr = document.createElement('tr');
+
+                        for(var j = 0; j < 4; j++){
+                            var td = document.createElement('td');
+                            var item = books[i][items[j]];
+                            td.innerHTML = item;
+                            tr.appendChild(td);
+                        }
+
+                    tbody.appendChild(tr);
+                }
+
+                table.appendChild(tbody);
+                document.getElementById("booksTable").appendChild(table);
+            }
+
+            var books = [{articul: "abc", author: "Palanik", title: "Fight Club", description: "Cool"},
+                {articul: "ergheh", author: "London", title: "Martin Iden", description: "Interesting"},
+                {articul: "45hj", author: "Palanik", title: "Fight Club", description: "Cool"},
+                {articul: "54jh6", author: "Miller", title: "Nexus", description: "Too large"},
+                {articul: "9995h54j", author: "Stairon", title: "Set this house on fire", description: "Too deep and interesting"}];
+            createBooksTable(books);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Task 3</title>
+
+        <script>
+            function comment(){
+                if(document.getElementById("comment").value != ""){
+                    var br1 = document.createElement('br');
+                    document.body.appendChild(br1);
+                    var br2 = document.createElement('br');
+                    document.body.appendChild(br2);
+
+                    var image = document.createElement("img");
+                    image.id = "img";
+                    image.src = "avatar.png";
+                    document.body.appendChild(image);
+
+                    var p = document.createElement('p');
+                    document.body.appendChild(p);
+                    p.append(document.createTextNode("Автор: Дмитрий Иванов"));
+                    p.append(document.createElement("br"));
+                    p.append(document.createTextNode("Дата и время: " + Date()));
+                    p.append(document.createElement("br"));
+                    p.append(document.createTextNode("Комментарий: " + document.getElementById("comment").value));
+
+                    document.getElementById("comment").value = "";
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <p><b>Введите текст:</b></p>
+        <p><textarea id="comment" rows="10" cols="45"></textarea></p>
+        <input type="button" value="Комментировать" onclick="comment();">
+    </body>
+</html>

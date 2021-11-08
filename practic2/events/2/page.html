@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Task 2</title>
+    </head>
+
+    <body>
+        <button style="height: 50px; width: 100px" class="click-count">0</button>
+
+        <script>
+            document.addEventListener('click', ({target: t}) => {
+                if (t.classList.contains('click-count')) {
+                    t.innerText = (t.innerText | 0) + 1;
+                }
+            });
+        </script>
+    </body>
+</html>

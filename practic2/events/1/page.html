@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Task 1</title>
+
+        <style>
+            div{
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="box1" style="background-color: red;"></div>
+        <br>
+        <div id="box2" style="background-color: blue;"></div>
+        <br>
+        <div id="box3" style="background-color: yellow;"></div>
+
+        <script>
+            var col = [];
+            document.querySelectorAll("div").forEach((el, i) => {
+                col[i] = getComputedStyle(el).backgroundColor;
+                el.onclick = e => {
+                    el.style.backgroundColor = getComputedStyle(el).backgroundColor === col[i]?'green':col[i];
+                };
+            });
+        </script>
+    </body>
+</html>
