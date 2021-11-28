@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Task 2</title>
+    </head>
+
+    <body>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+        <div id="content" align="center">
+            <canvas id="myChart" width="628" height="400"></canvas>
+        </div>
+
+        <script type="text/javascript">
+            function Diagram(){
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'f(x)',
+                            data: [],
+                            borderColor: 'blue',
+                            borderWidth: 2,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            xAxes: [{
+                                display: true
+                            }],
+                            yAxes: [{
+                                display: true
+                            }]
+                    }
+                }
+                });
+
+            for(var x = -5.0; x <= 5.0; x += 0.01){
+                myChart.data.labels.push(''+x.toFixed(2));
+                myChart.data.datasets[0].data.push(f(x).toFixed(2));
+            }
+
+            myChart.update();
+
+            function f(x){
+                if(x >= 1){
+                    return 5.0 / x;
+                }
+                else{
+                    return x * x - 4.0 * x;
+                }
+            }
+            }
+
+            window.addEventListener("load", Diagram); 
+        </script>
+    </body>
+</html>
