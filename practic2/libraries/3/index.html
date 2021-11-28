@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <title>Task 3</title>
+
+        <style>
+            div{
+                width: 100px;
+                height: 100px;
+                background-color: gray;
+                float:left;
+                margin: 0 20px 20px 0; 
+                text-align:center;
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script>
+            function setField(n){
+                for(i = 0; i < n; i++){
+                    for(j = 0; j < n; j++){
+                        let elem = document.createElement('div');
+                        document.body.append(elem);
+                    }
+
+                    for(k = 0; k < 7; k++){
+                        let elem = document.createElement('br');
+                        document.body.append(elem);
+                    }
+                }
+            }
+
+            function getPrizesNumber(){
+                min = 1;
+                max = 4;
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            function getPrizesIndexes(fieldSize, prizesNumber){
+                let prizesIndexes = []
+
+                for(i = 0; i < prizesNumber; i++){
+                    while(true){
+                        let index = Math.floor(Math.random() * (fieldSize * fieldSize - 0)) + 0;
+
+                        if(prizesIndexes.includes(index)){
+                            continue;
+                        }
+                        else{
+                            prizesIndexes.push(index);
+                            break;
+                        }
+                    }
+                }
+
+                return prizesIndexes;
+            }
+
+            function processTextField(prizesNumber, prizesCollected){
+                if(document.getElementById("number").value == "You lost"){
+                    return;
+                }
+
+                if(prizesNumber == prizesCollected){
+                    document.getElementById("number").value="You won";
+                    return;
+                }
+
+                var number = document.getElementById("number").value;
+                number -= 1;
+
+                if(number == 0){
+                    document.getElementById("number").value="You lost";
+                }
+                else{
+                    document.getElementById("number").value=number;
+                }
+            }
+            
+            const fieldSize = 3;
+            setField(fieldSize);
+            let prizesNumber = getPrizesNumber();
+            let prizesCollected = 0;
+            let prizesIndexes = getPrizesIndexes(fieldSize, prizesNumber);
+
+            let col = [];
+
+            document.querySelectorAll("div").forEach((el, i) => {
+                col[i] = getComputedStyle(el).backgroundColor;
+
+                el.onclick = e => {
+                    if(getComputedStyle(el).backgroundColor === col[i]){
+                        if(prizesIndexes.includes(i)){
+                            el.style.backgroundColor = "yellow";
+                            prizesCollected += 1;
+                            processTextField(prizesNumber, prizesCollected);
+                        }
+                        else{
+                            el.style.backgroundColor = "black";
+                            processTextField(prizesNumber, prizesCollected);
+                        }
+                    }
+                };
+            });
+        </script>
+
+        <input id="number" type="text", value="3", size="5", readonly>
+    </body>
+</html>
