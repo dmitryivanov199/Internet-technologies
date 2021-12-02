@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Task 1</title>
+    </head>
+
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+
+        <div id="app">
+            <h1>Click the button to show or hide the images...</h1>
+            <button class="btn-primary" v-on:click="isHidden = !isHidden">{{ isHidden ? 'Click to Show the Images' : 'Click to Hide the Images' }}</button>
+
+            <div>
+                <img width="100" src="https://images.freeimages.com/images/large-previews/ffa/water-lilly-1368676.jpg" v-if="!isHidden">
+                <img width="100" src="https://images.freeimages.com/images/large-previews/ffa/water-lilly-1368676.jpg" v-if="!isHidden">
+                <img width="100" src="https://images.freeimages.com/images/large-previews/ffa/water-lilly-1368676.jpg" v-if="!isHidden">
+            </div>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data:{
+                    isHidden: true
+                }
+            });
+        </script>
+    </body>
+</html>
