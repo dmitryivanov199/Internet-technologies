@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Task 3</title>
+
+        <script src="https://unpkg.com/vue@next"></script>
+
+        <style type="text/css">
+            span {                
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <input v-model="search" placeholder="Find by name">
+
+            <div>
+                <ul>
+                    <li v-for="tmp in filter_articles">
+                        <span>
+                            {{tmp.article}}
+                        </span>
+
+                        <span>
+                            <a v-bind:href='tmp.url' target="_blank">
+                                {{tmp.url}}
+                            </a>
+                        </span>
+
+                        <span>
+                            <a v-bind:href='tmp.url' target="_blank"><img style=' width:64px; height:64px;' v-bind:src='tmp.img' >
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <script>
+            Vue.createApp({
+                data(){
+                    return {
+                        search: '',
+                        articles: [
+                            { 
+                                article: 'Casino',
+                                url: 'https://en.wikipedia.org/wiki/Casino_(1995_film)', 
+                                img: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Casino_poster.jpg/220px-Casino_poster.jpg'  
+                            },
+
+                            {
+                                article: 'Goodfellas',
+                                url:'https://en.wikipedia.org/wiki/Goodfellas',
+                                img:'https://upload.wikimedia.org/wikipedia/en/7/7b/Goodfellas.jpg'  
+                            },
+
+                            {
+                                article: 'The Irishman', 
+                                url: 'https://en.wikipedia.org/wiki/The_Irishman', 
+                                img: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/80/The_Irishman_poster.jpg/220px-The_Irishman_poster.jpg'
+                            }
+                        ]
+                    };
+                },
+
+                computed: {
+                    filter_articles() {
+                        return this.articles.filter(tmp => {
+                            return tmp.article.toLowerCase().indexOf(this.search.toLowerCase()) !== -1;});
+                    }
+                }
+            }).mount('#app');
+        </script>
+    </body>
+</html>

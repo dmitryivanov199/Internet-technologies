@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>Task 6</title>
+
+        <script src="https://unpkg.com/vue@next"></script>
+        
+        <style type="text/css">
+            span {                
+                display: block;
+            }
+
+            ul {                
+                padding-left: 0;
+            }
+
+            li {                
+                list-style-type: none;
+            }
+
+            #id1 {
+                column-count: 2;
+                height: 460px;
+                width: 460px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <button v-on:click="visible1 = true; visible2 = false">List</button>
+            <button v-on:click="visible1 = false; visible2 = true">Blocks</button>
+            
+            <div v-show="visible1">
+                <ul>
+                    <li v-for="tmp in articles">
+                        <span>
+                            {{tmp.article}}
+                        </span>
+
+                        <span>
+                            <a v-bind:href='tmp.url' target="_blank">
+                                {{tmp.url}}
+                            </a>
+                        </span>
+
+                        <span>
+                            <a v-bind:href='tmp.url' target="_blank"><img style=' width:128px; height:128px;' v-bind:src='tmp.img'></a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div v-show="visible2">
+                <ul id = "id1">
+                    <li v-for="tmp in articles">
+                        <p>
+                            <a v-bind:href='tmp.url' target="_blank"><img style=' width:220px; height:220px;' v-bind:src='tmp.img'></a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+            Vue.createApp({
+                data() {
+                    return {
+                        visible1: true,
+                        visible2: false,
+                        articles: [
+                            { 
+                                article: 'Casino',
+                                url: 'https://en.wikipedia.org/wiki/Casino_(1995_film)', 
+                                img: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Casino_poster.jpg/220px-Casino_poster.jpg'  
+                            },
+
+                            {
+                                article: 'Goodfellas',
+                                url:'https://en.wikipedia.org/wiki/Goodfellas',
+                                img:'https://upload.wikimedia.org/wikipedia/en/7/7b/Goodfellas.jpg'  
+                            },
+
+                            {
+                                article: 'The Irishman', 
+                                url: 'https://en.wikipedia.org/wiki/The_Irishman', 
+                                img: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/80/The_Irishman_poster.jpg/220px-The_Irishman_poster.jpg'
+                            }
+                        ]
+                    };
+                }
+            }).mount('#app');
+        </script>
+    </body>
+</html>

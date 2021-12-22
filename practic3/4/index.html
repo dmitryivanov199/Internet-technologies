@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Task 4</title>
+
+        <script src="https://unpkg.com/vue@next"></script>
+        
+        <style type="text/css">
+            span {                
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+
+            <div>
+                <ul>
+                    <p class="btn" v-if="isHidden" v-on:click="isHidden = !isHidden">
+                        <template v-if="isHidden">
+                            {{currentTag}}
+                        </template>
+                    </p>
+
+                    <p class="btn" v-if="!isHidden">
+                        <template v-if="!isHidden">
+                            <input type="text" v-bind:value="currentTag" v-model="currentTag">
+                        </template>
+                    </p>
+
+                    <div>
+                        <button class="btn" v-if="!isHidden" v-on:click="isHidden = !isHidden">
+                            Save
+                        </button> 
+
+                        <button class="btn" v-if="!isHidden" v-on:click="isHidden = !isHidden; currentTag=currentTagFirst">
+                            Reset
+                        </button>
+                    </div>        
+                </ul> 
+            </div>
+        </div>
+
+        <script>
+            Vue.createApp({
+                data() {
+                    return {
+                        currentTag: 'Click and change!',
+                        currentTagFirst: 'Click and change!',
+                        isHidden: true
+                    };
+                }
+            }).mount('#app');
+        </script>
+    </body>
+</html>

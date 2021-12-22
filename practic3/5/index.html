@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title>Task 5</title>
+
+        <script src="https://unpkg.com/vue@next"></script>
+        
+        <style type="text/css">
+            button{
+                width: 200px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <p>
+                Price list:
+            </p>
+            
+            <ul>
+                <li v-for="tmp in arr">
+                    <button v-on:click="tmp.flag = !tmp.flag; tmp.flag? sumPrice = sumPrice + tmp.price : sumPrice = sumPrice - tmp.price">
+                        {{tmp.name}} {{tmp.price}} $
+                    </button>
+                </li>
+            </ul>
+            
+            <p>
+                Total: {{sumPrice}} $
+            </p>
+        </div>
+        
+        <script>
+            Vue.createApp({
+                data() {
+                    return {
+                        sumPrice: 0,
+                        arr: [
+                            {
+                                name: 'Fish', 
+                                price: 7,
+                                flag: false,
+                            },
+
+                            {
+                                name: 'Meat', 
+                                price: 5,
+                                flag: false,
+                            },
+
+                            {
+                                name: 'Eggs and coffee', 
+                                price: 2,
+                                flag: false,
+                            },
+
+                            {
+                                name: 'Vodka', 
+                                price: 2,
+                                flag: false,
+                            },
+
+                            {
+                                name: 'Salad "Caesar"', 
+                                price: 3,
+                                flag: false,
+                            }
+                        ]
+                    };
+                }
+            }).mount('#app');
+
+            let box = document.getElementsByTagName("button");
+
+            for(let i = 0; i < box.length; i++) {
+                box[i].onclick = function() {
+                    if(this.style.backgroundColor == "")
+                        this.style.backgroundColor = "#42f54b";
+                    else 
+                        this.style.backgroundColor = ""
+                };
+            }
+        </script>
+    </body>
+</html>
